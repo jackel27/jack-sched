@@ -1,4 +1,20 @@
 <style scoped>
+  @import url('https://fonts.googleapis.com/css?family=Roboto:100i');
+  .dayClass {
+    color: #DFDFDF;
+     background: linear-gradient(to bottom, #fe8c00, #f83600); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  .NightClass {
+    background: linear-gradient(to top, #29323c, #485563); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #DFDFDF;
+  }
+  .day {
+    width: calc(100% / 7);
+    background: linear-gradient(to bottom, #eef2f3, #8e9eab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border: 1px solid black;
+    height: calc(100vh / 7);
+    /* font-weight: bolder; */
+  }
   .days {
     font-size: 2em;
   }
@@ -8,7 +24,14 @@
   }
   .calendar-month, #month-title {
     text-align: center;
+    margin-top: 20px;
+    margin-bottom: 60px;
     font-size: 2em;
+    color: ghostwhite;
+  }
+  .day-number {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
   }
   .calendar-container, .calendar-head {
     width:  100%;
@@ -17,20 +40,13 @@
     align-items: center;
     padding: 0 20px 0 20px;
   }
-  .day {
-    width: calc(100% / 7);
-    background-color: white;
-    border: 1px solid black;
-    height: calc(100vh / 7);
-    font-weight: bolder;
-  }
   .empty-day {
-    background-color: grey;
+    background: linear-gradient(#414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
   .day-of-week {
     width: calc(100% / 7);
-    height: calc(100vh / 20);
-    background-color: aliceblue;
+    /* height: calc(100vh / 30); */
+    color: rgba(215, 221, 232, .3);
   }
   .calendar-head {
     /* margin-bottom: -45px; */
@@ -44,7 +60,13 @@
     height: 100%;
   }
   .currentday {
-    background-color: rgba(0, 68, 60, 0.6);
+    /* background-color: rgba(0, 68, 60, 0.6)!important; */
+    background: linear-gradient(to bottom, #26a0da, #314755)!important;
+  }
+  .day-workday {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    text-align: center;
   }
 </style>
 
@@ -63,13 +85,13 @@
 
     </div>
      <div class="day" v-for="day in totaldays">
-       <div v-if="checkday(day)" class="currentday days" :id="day">
-         {{ day }}
-         {{ isWorkday(day) }}
+       <div v-if="checkday(day)" class="currentday days" :class="{'dayClass': isWorkday(day) === 'Day', 'NightClass': isWorkday(day) === 'Night'}" :id="day">
+         <p class='day-number'>{{ day }}</p>
+         <p class='day-workday'>{{ isWorkday(day) }}</p>
        </div>
-       <div v-else class="days" :id="day">
-         {{ day }}
-         {{ isWorkday(day) }}
+       <div v-else class="days" :class="{'dayClass': isWorkday(day) === 'Day', 'NightClass': isWorkday(day) === 'Night'}" :id="day">
+         <p class='day-number'>{{ day }}</p>
+        <p class='day-workday'>{{ isWorkday(day) }}</p>
        </div>
      </div>
    </div>
@@ -139,7 +161,7 @@ export default {
       if (diffDays % 8 === 0 || (diffDays - 1) % 8 === 0) {
         return ('Day')
       } else if ((diffDays - 2) % 8 === 0 || (diffDays - 3) % 8 === 0) {
-        return ('Grave')
+        return ('Night')
       }
     },
     daysBetween (dateNow, referenceDate) {

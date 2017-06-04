@@ -2,6 +2,9 @@
   body.noScroll { /* ...or body.dialogShowing */
     overflow: hidden;
   }
+  body, html {
+  background: linear-gradient(#414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
   #previous-date {
     position: fixed;
       top: 0%;
