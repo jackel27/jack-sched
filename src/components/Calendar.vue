@@ -1,5 +1,9 @@
 <style scoped>
   @import url('https://fonts.googleapis.com/css?family=Roboto:100i');
+  @media only screen
+  and (orientation: portrait) {
+
+  }
   .dayClass {
     color: #DFDFDF;
      background: linear-gradient(to bottom, #fe8c00, #f83600); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -24,9 +28,9 @@
   }
   .calendar-month, #month-title {
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 60px;
-    font-size: 2em;
+/*     margin-top: 20px;
+    margin-bottom: 60px; */
+    font-size: 3em;
     color: ghostwhite;
   }
   .day-number {
@@ -67,6 +71,22 @@
     font-family: 'Roboto', sans-serif;
     font-size: 1em;
     text-align: center;
+  }
+   @media only screen
+  and (orientation: landscape) {
+    .day-workday {
+      color: transparent!important;
+    }
+    .day {
+      height: calc(100vh / 7.23);
+    }
+    .calendar-month, #month-title {
+      text-align: center;
+  /*     margin-top: 20px;
+      margin-bottom: 60px; */
+      font-size: 1.5em;
+      color: ghostwhite;
+    }
   }
 </style>
 
