@@ -72,10 +72,10 @@ export default {
       this.prevMonth()
       clearTimeout(this.timer)
       this.timer = null
-      this.myTransition = 1.5
+      this.myTransition = 0.5
     },
     onPan (e) {
-      this.panAmt = e.deltaX / 4
+      this.panAmt = e.deltaX / 2
       if (this.panAmt > 101.1) {
         this.panAmt = 101.1
       } else if (this.panAmt < -101.1) {
@@ -88,15 +88,15 @@ export default {
     onPanEnd (e) {
       clearTimeout(this.timer)
       this.timer = null
-      if (this.panAmt > 75 || this.panAmt < -75) {
-        if (this.panAmt > 75) {
+      if (this.panAmt > 40 || this.panAmt < -40) {
+        if (this.panAmt > 40) {
           this.prevMonthPos = 0
           this.currentMonthPos = 101.1
         } else {
           this.nextMonthPos = 0
           this.currentMonthPos = -101.1
         }
-        this.timeout = setTimeout(this.panEndTimeout, 1500)
+        this.timeout = setTimeout(this.panEndTimeout, 500)
       } else {
         this.prevMonthPos = -101.1
         this.currentMonthPos = 0
