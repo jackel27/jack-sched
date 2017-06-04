@@ -137,7 +137,7 @@ export default {
       this.weekdayStart(this.nextDate, 'next')
     },
     prevMonth () {
-      this.prevMonth()
+      // this.prevMonth()
       let prevDate = new Date()
       if (this.date.getMonth() === 0) {
         prevDate.setFullYear(this.date.getFullYear() - 1, 11, 1)
